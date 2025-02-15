@@ -1,6 +1,7 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { db } from ".";
+import { phoneNumber } from "better-auth/plugins";
 
 export const auth = betterAuth({
   database: drizzleAdapter(db, {
@@ -12,4 +13,5 @@ export const auth = betterAuth({
     //if all of them are just using plural form, you can just pass the option below
     usePlural: true,
   }),
+  plugins: [phoneNumber()],
 });

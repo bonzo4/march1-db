@@ -1,5 +1,6 @@
 import { pgTable, text, timestamp } from "drizzle-orm/pg-core";
 import { users } from "./users";
+import type { InferInsertModel, InferSelectModel } from "drizzle-orm";
 
 export const accounts = pgTable("accounts", {
   id: text("id").primaryKey(),
@@ -18,3 +19,7 @@ export const accounts = pgTable("accounts", {
   createdAt: timestamp("created_at").notNull(),
   updatedAt: timestamp("updated_at").notNull(),
 });
+
+export type AccountRow = InferSelectModel<typeof accounts>;
+export type AccountInsert = InferInsertModel<typeof accounts>;
+export type AccountUpdate = Partial<AccountRow>;

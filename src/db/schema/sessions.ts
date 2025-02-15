@@ -1,5 +1,6 @@
-import { pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 import { users } from "./users";
+import type { InferInsertModel, InferSelectModel } from "drizzle-orm";
 
 export const sessions = pgTable("sessions", {
   id: text("id").primaryKey(),
@@ -13,3 +14,7 @@ export const sessions = pgTable("sessions", {
     .notNull()
     .references(() => users.id, { onDelete: "cascade" }),
 });
+
+export type SessionRow = InferSelectModel<typeof sessions>;
+export type SessionInsert = InferInsertModel<typeof sessions>;
+export type SessionUpdate = Partial<SessionRow>;

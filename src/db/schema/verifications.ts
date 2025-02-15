@@ -1,3 +1,4 @@
+import type { InferInsertModel, InferSelectModel } from "drizzle-orm";
 import { pgTable, text, timestamp } from "drizzle-orm/pg-core";
 
 export const verifications = pgTable("verifications", {
@@ -8,3 +9,7 @@ export const verifications = pgTable("verifications", {
   createdAt: timestamp("created_at"),
   updatedAt: timestamp("updated_at"),
 });
+
+export type VerificationRow = InferSelectModel<typeof verifications>;
+export type VerificationInsert = InferInsertModel<typeof verifications>;
+export type VerificationUpdate = Partial<VerificationRow>;

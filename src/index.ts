@@ -1,28 +1,25 @@
 import "dotenv/config";
-import { drizzle } from "drizzle-orm/node-postgres";
 
-export const db = drizzle(process.env.DATABASE_URL!);
+export { users } from "./db/schema/auth/users";
+export type { UserRow, UserInsert, UserUpdate } from "./db/schema/auth/users";
 
-export { users } from "./db/schema/users";
-export type { UserRow, UserInsert, UserUpdate } from "./db/schema/users";
-
-export { sessions } from "./db/schema/sessions";
+export { sessions } from "./db/schema/auth/sessions";
 export type {
   SessionRow,
   SessionInsert,
   SessionUpdate,
-} from "./db/schema/sessions";
+} from "./db/schema/auth/sessions";
 
-export { accounts } from "./db/schema/accounts";
+export { accounts } from "./db/schema/auth/accounts";
 export type {
   AccountRow,
   AccountInsert,
   AccountUpdate,
-} from "./db/schema/accounts";
+} from "./db/schema/auth/accounts";
 
-export { verifications } from "./db/schema/verifications";
+export { verifications } from "./db/schema/auth/verifications";
 export type {
   VerificationRow,
   VerificationInsert,
   VerificationUpdate,
-} from "./db/schema/verifications";
+} from "./db/schema/auth/verifications";

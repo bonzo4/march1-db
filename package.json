@@ -1,17 +1,21 @@
 {
-  "version": "1.0.1",
+  "version": "1.0.2",
   "name": "march1-db",
   "module": "src/index.ts",
   "type": "module",
   "scripts": {
     "start": "bun src/index.ts",
     "generate": "drizzle-kit generate",
-    "migrate": "drizzle-kit check && drizzle-kit migrate"
+    "migrate": "drizzle-kit check && drizzle-kit migrate",
+    "build": "bun build --target=node ./src/index.ts --outfile=dist/index.js && bun run build:declaration",
+    "build:declaration": "tsc --emitDeclarationOnly --project tsconfig.types.json",
+    "postbuild": "rimraf tsconfig.types.tsbuildinfo"
   },
   "devDependencies": {
     "@types/bun": "latest",
     "@types/pg": "^8.11.11",
     "drizzle-kit": "^0.30.4",
+    "rimraf": "^6.0.1",
     "tsx": "^4.19.2"
   },
   "peerDependencies": {

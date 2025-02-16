@@ -1,5 +1,5 @@
 {
-  "version": "1.0.7",
+  "version": "1.0.8",
   "name": "march1-db",
   "module": "src/index.ts",
   "main": "dist/index.js",
@@ -12,7 +12,7 @@
     "build": "bun build --target=node ./src/index.ts --outfile=dist/index.js && bun run build:declaration",
     "build:declaration": "tsc --emitDeclarationOnly --project tsconfig.types.json",
     "postbuild": "rimraf tsconfig.types.tsbuildinfo",
-    "publish:build": "bun run build && bun publish"
+    "publish:build": "rimraf ./dist && bun run build && bun publish"
   },
   "devDependencies": {
     "@types/bun": "latest",

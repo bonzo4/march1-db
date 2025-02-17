@@ -1,9 +1,11 @@
-version: "3.8"
+networks:
+  march1_network:
+    external: true
 
 services:
   db:
     image: postgres:latest
-    container_name: postgres_db
+    container_name: march1_db
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -12,6 +14,8 @@ services:
       - "${POSTGRES_PORT}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - march1_network
 
 volumes:
   postgres_data:
